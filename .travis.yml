@@ -11,6 +11,12 @@ env:
   - SYMFONY_VERSION=2.3.* #php >=5.3.3
   - SYMFONY_VERSION=2.7.* #php >=5.3.9
   - SYMFONY_VERSION=2.8.* #php >=5.3.9
+  - SYMFONY_VERSION=3.0.* #php >=5.5.9
+
+env:
+  - SYMFONY_VERSION=2.3.* #php >=5.3.3
+  - SYMFONY_VERSION=2.7.* #php >=5.3.9
+  - SYMFONY_VERSION=2.8.* #php >=5.3.9
   #- SYMFONY_VERSION=3.0.* #php >=5.5.9
 
 before_install:
@@ -20,12 +26,6 @@ before_install:
   - sed 's/${env:SYMFONY_VERSION}/'$SYMFONY_VERSION'/g' composer-template.json > composer.json #replace composer dependencies with actual symfony version
 
 install:
-  - composer update --prefer-dist --no-interaction
-
-after_install:
-  - mv composer.json.bck composer.json
-
-script: vendor/bin/phpunit --coverage-text
 
 matrix:
   exclude:
